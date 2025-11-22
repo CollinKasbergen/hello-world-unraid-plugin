@@ -10,17 +10,15 @@
   <FILE Name="/usr/local/emhttp/plugins/hello-world-safe/HelloWorld.page">
     <INLINE>
       <![CDATA[
-        Menu="Settings"
-        Icon="hello-world-safe.png"
-        Version="2023.10.26"
-        Author="Safe Dev"
-        Title="Hello World Plugin (Safe)"
-        
-        ---
-        
-        <?php
-          echo "<h1>Hello World from Unraid Plugin (Safe)! ✅</h1>";
-        ?>
+Menu="Settings"
+Icon="hello-world-safe.png"
+Version="2023.10.26"
+Author="Safe Dev"
+Title="Hello World Plugin (Safe)"
+--- 
+<?php
+  echo "<h1>Hello World from Unraid Plugin (Safe)! ✅</h1>";
+?>
       ]]>
     </INLINE>
   </FILE>

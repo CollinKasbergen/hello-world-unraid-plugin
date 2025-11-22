@@ -25,4 +25,34 @@
     </INLINE>
   </FILE>
 
+  <FILE Run="/bin/bash" Method="remove">
+    <INLINE>
+      <![CDATA[
+        # Define the directories using the plugin name entity
+        PLUGIN_DIR="/usr/local/emhttp/plugins/hello-world-safe"
+        CONFIG_DIR="/boot/config/plugins/hello-world-safe"
+
+        echo "Attempting safe removal of plugin: &name;"
+
+        # Check and remove the main plugin directory
+        if [ -d "$PLUGIN_DIR" ]; then
+          rm -r "$PLUGIN_DIR"
+          echo "Removed $PLUGIN_DIR"
+        else
+          echo "$PLUGIN_DIR not found. Skipping removal."
+        fi
+
+        # Check and remove the config directory on the flash drive
+        if [ -d "$CONFIG_DIR" ]; then
+          rm -r "$CONFIG_DIR"
+          echo "Removed $CONFIG_DIR"
+        else
+          echo "$CONFIG_DIR not found. Skipping removal."
+        fi
+        
+        echo "Safe removal complete."
+      ]]>
+    </INLINE>
+  </FILE>
+
   </PLUGIN>

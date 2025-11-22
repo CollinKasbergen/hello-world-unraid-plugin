@@ -3,7 +3,7 @@
   <!ENTITY name "hello-world-safe">
   <!ENTITY author "Your Name">
   <!ENTITY version "2023.10.26">
-  <!ENTITY pluginURL "https://github.com/CollinKasbergen/hello-world-unraid-plugin/raw/refs/heads/main/hello-world.plg">
+  <!ENTITY pluginURL "https://raw.githubusercontent.com/CollinKasbergen/hello-world-unraid-plugin/main/hello-world.plg">
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
 

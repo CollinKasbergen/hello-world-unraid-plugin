@@ -7,17 +7,14 @@
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
 
-  <FILE Name="/usr/local/emhttp/plugins/&name;/HelloWorld.page">
+  <FILE Name="/usr/local/emhttp/plugins/hello-world-safe/HelloWorld.page">
     <INLINE>
       <![CDATA[
         Menu="Settings"
-        Icon="hello-world-safe.png"
-        Version="&version;"
-        Author="&author;"
-        Title="Hello World Plugin (Safe)"
+        Title="TEST PAGE"
         ---
         <?php
-          echo "<h1>Hello World from Unraid Plugin (Safe)! ✅</h1>";
+          echo "Hello World";
         ?>
       ]]>
     </INLINE>
@@ -37,8 +34,8 @@
   <FILE Run="/bin/bash" Method="remove">
     <INLINE>
       <![CDATA[
-        PLUGIN_DIR="/usr/local/emhttp/plugins/&name;"
-        CONFIG_DIR="/boot/config/plugins/&name;"
+        PLUGIN_DIR="/usr/local/emhttp/plugins/hello-world-safe"
+        CONFIG_DIR="/boot/config/plugins/hello-world-safe"
 
         echo "Attempting safe removal of plugin: &name;"
 

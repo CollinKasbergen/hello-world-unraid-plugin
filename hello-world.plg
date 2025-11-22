@@ -3,61 +3,26 @@
   <!ENTITY name "hello-world-safe">
   <!ENTITY author "Your Name">
   <!ENTITY version "2023.10.26">
-  <!ENTITY pluginURL "https://github.com/CollinKasbergen/hello-world-unraid-plugin/raw/refs/heads/main/hello-world.plg">
+  <!ENTITY pluginURL "https://your_repository/hello-world-safe.plg">
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
 
-  <FILE Name="/usr/local/emhttp/plugins/hello-world-safe/HelloWorld.page">
+  <FILE Name="/usr/local/emhttp/plugins/&name;/HelloWorld.page">
     <INLINE>
       <![CDATA[
         Menu="Settings"
-        Title="TEST PAGE"
-        ---
+        Icon="hello-world-safe.png"
+        Version="&version;"
+        Author="&author;"
+        Title="Hello World Plugin (Safe)"
+        
+        --- 
+        
         <?php
-          echo "Hello World";
+          echo "<h1>Hello World from Unraid Plugin (Safe)! ✅</h1>";
         ?>
       ]]>
     </INLINE>
   </FILE>
 
-  <FILE Name="/usr/local/emhttp/plugins/&name;/README.md">
-    <INLINE>
-      <![CDATA[
-        **Hello World Plugin (Safe)**
-        This is a minimal plugin example with a safer removal script.
-      ]]>
-    </INLINE>
-  </FILE>
-
-  ---
-
-  <FILE Run="/bin/bash" Method="remove">
-    <INLINE>
-      <![CDATA[
-        PLUGIN_DIR="/usr/local/emhttp/plugins/hello-world-safe"
-        CONFIG_DIR="/boot/config/plugins/hello-world-safe"
-
-        echo "Attempting safe removal of plugin: &name;"
-
-        # Check and remove the main plugin directory
-        if [ -d "$PLUGIN_DIR" ]; then
-          rm -r "$PLUGIN_DIR"
-          echo "Removed $PLUGIN_DIR"
-        else
-          echo "$PLUGIN_DIR not found. Skipping removal."
-        fi
-
-        # Check and remove the config directory on the flash drive
-        if [ -d "$CONFIG_DIR" ]; then
-          rm -r "$CONFIG_DIR"
-          echo "Removed $CONFIG_DIR"
-        else
-          echo "$CONFIG_DIR not found. Skipping removal."
-        fi
-        
-        echo "Safe removal complete."
-      ]]>
-    </INLINE>
-  </FILE>
-
-</PLUGIN>
+  </PLUGIN>

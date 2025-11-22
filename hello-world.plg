@@ -1,7 +1,7 @@
 <?xml version='1.0' standalone='yes'?>
 <!DOCTYPE PLUGIN [
   <!ENTITY name "hello-world-safe">
-  <!ENTITY author "Your Name">
+  <!ENTITY author "Collin Kasbergen">
   <!ENTITY version "2023.10.26">
   <!ENTITY pluginURL "https://raw.githubusercontent.com/CollinKasbergen/hello-world-unraid-plugin/main/hello-world.plg">
 ]>
@@ -11,40 +11,45 @@
     <INLINE>
       <![CDATA[
 Menu="Settings"
-Title="HELLO WORLD TEST"
+Icon="hello-world-safe.png"
+Version="&version;"
+Author="&author;"
+Title="Hello World Plugin (Safe)"
 ---
 <?php
-  echo "<h1>Success! Hello World works.</h1>";
+  echo "<h1>Hello World from Unraid Plugin (Safe)! ✅</h1>";
+  echo "<p>This page confirms the full header attributes and PHP are working correctly.</p>";
 ?>
       ]]>
     </INLINE>
   </FILE>
 
-  ---
+  <FILE Name="/usr/local/emhttp/plugins/hello-world-safe/README.md">
+    <INLINE>
+      <![CDATA[
+**Hello World Plugin (Safe)**
+This is a minimalist plugin created for learning the Unraid plugin system.
+It demonstrates a safe removal script and a functional web GUI page.
+      ]]>
+    </INLINE>
+  </FILE>
 
   <FILE Run="/bin/bash" Method="remove">
     <INLINE>
       <![CDATA[
-        # Define the directories using the plugin name entity
         PLUGIN_DIR="/usr/local/emhttp/plugins/hello-world-safe"
         CONFIG_DIR="/boot/config/plugins/hello-world-safe"
 
         echo "Attempting safe removal of plugin: &name;"
 
-        # Check and remove the main plugin directory
         if [ -d "$PLUGIN_DIR" ]; then
           rm -r "$PLUGIN_DIR"
           echo "Removed $PLUGIN_DIR"
-        else
-          echo "$PLUGIN_DIR not found. Skipping removal."
         fi
 
-        # Check and remove the config directory on the flash drive
         if [ -d "$CONFIG_DIR" ]; then
           rm -r "$CONFIG_DIR"
           echo "Removed $CONFIG_DIR"
-        else
-          echo "$CONFIG_DIR not found. Skipping removal."
         fi
         
         echo "Safe removal complete."
@@ -52,4 +57,4 @@ Title="HELLO WORLD TEST"
     </INLINE>
   </FILE>
 
-  </PLUGIN>
+</PLUGIN>

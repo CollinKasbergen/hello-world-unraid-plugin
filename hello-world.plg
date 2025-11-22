@@ -7,16 +7,16 @@
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
 
-  <FILE Name="/usr/local/emhttp/plugins/hello-world-safe/HelloWorld.page">
+  <FILE Name="/usr/local/emhttp/plugins/&name;/HelloWorld.page">
     <INLINE>
       <![CDATA[
         Menu="Settings"
         Icon="hello-world-safe.png"
-        Version="&version;"
-        Author="&author;"
+        Version="2023.10.26"
+        Author="Safe Dev"
         Title="Hello World Plugin (Safe)"
         
-        --- 
+        ---
         
         <?php
           echo "<h1>Hello World from Unraid Plugin (Safe)! ✅</h1>";

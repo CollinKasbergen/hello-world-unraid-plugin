@@ -1,9 +1,9 @@
 <?xml version='1.0' standalone='yes'?>
 <!DOCTYPE PLUGIN [
-  <!ENTITY name "hello-world">
+  <!ENTITY name "hello-world-safe">
   <!ENTITY author "Your Name">
   <!ENTITY version "2023.10.26">
-  <!ENTITY pluginURL "https://github.com/CollinKasbergen/hello-world-unraid-plugin/raw/refs/heads/main/hello-world.plg">
+  <!ENTITY pluginURL "https://your_repository/hello-world-safe.plg">
 ]>
 <PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
 
@@ -11,14 +11,13 @@
     <INLINE>
       <![CDATA[
         Menu="Settings"
-        Icon="hello-world.png"
+        Icon="hello-world-safe.png"
         Version="&version;"
         Author="&author;"
-        Title="Hello World Plugin"
+        Title="Hello World Plugin (Safe)"
         ---
         <?php
-          // PHP code for the page is separated by '---'
-          echo "<h1>Hello World from Unraid Plugin! 👋</h1>";
+          echo "<h1>Hello World from Unraid Plugin (Safe)! ✅</h1>";
         ?>
       ]]>
     </INLINE>
@@ -27,19 +26,39 @@
   <FILE Name="/usr/local/emhttp/plugins/&name;/README.md">
     <INLINE>
       <![CDATA[
-        **Hello World Plugin**
-        This is a minimal plugin example for the Unraid OS.
+        **Hello World Plugin (Safe)**
+        This is a minimal plugin example with a safer removal script.
       ]]>
     </INLINE>
   </FILE>
 
+  ---
+
   <FILE Run="/bin/bash" Method="remove">
     <INLINE>
       <![CDATA[
-        # Clean up the main plugin directory
-        rm -r /usr/local/emhttp/plugins/&name;
-        # Clean up any config files on the flash drive (if they existed)
-        rm -r /boot/config/plugins/&name;
+        PLUGIN_DIR="/usr/local/emhttp/plugins/&name;"
+        CONFIG_DIR="/boot/config/plugins/&name;"
+
+        echo "Attempting safe removal of plugin: &name;"
+
+        # Check and remove the main plugin directory
+        if [ -d "$PLUGIN_DIR" ]; then
+          rm -r "$PLUGIN_DIR"
+          echo "Removed $PLUGIN_DIR"
+        else
+          echo "$PLUGIN_DIR not found. Skipping removal."
+        fi
+
+        # Check and remove the config directory on the flash drive
+        if [ -d "$CONFIG_DIR" ]; then
+          rm -r "$CONFIG_DIR"
+          echo "Removed $CONFIG_DIR"
+        else
+          echo "$CONFIG_DIR not found. Skipping removal."
+        fi
+        
+        echo "Safe removal complete."
       ]]>
     </INLINE>
   </FILE>

@@ -1,0 +1,47 @@
+<?xml version='1.0' standalone='yes'?>
+<!DOCTYPE PLUGIN [
+  <!ENTITY name "hello-world">
+  <!ENTITY author "Your Name">
+  <!ENTITY version "2023.10.26">
+  <!ENTITY pluginURL "https://your_repository/hello-world.plg">
+]>
+<PLUGIN name="&name;" author="&author;" version="&version;" pluginURL="&pluginURL;">
+
+  <FILE Name="/usr/local/emhttp/plugins/&name;/HelloWorld.page">
+    <INLINE>
+      <![CDATA[
+        Menu="Settings"
+        Icon="hello-world.png"
+        Version="&version;"
+        Author="&author;"
+        Title="Hello World Plugin"
+        ---
+        <?php
+          // PHP code for the page is separated by '---'
+          echo "<h1>Hello World from Unraid Plugin! 👋</h1>";
+        ?>
+      ]]>
+    </INLINE>
+  </FILE>
+
+  <FILE Name="/usr/local/emhttp/plugins/&name;/README.md">
+    <INLINE>
+      <![CDATA[
+        **Hello World Plugin**
+        This is a minimal plugin example for the Unraid OS.
+      ]]>
+    </INLINE>
+  </FILE>
+
+  <FILE Run="/bin/bash" Method="remove">
+    <INLINE>
+      <![CDATA[
+        # Clean up the main plugin directory
+        rm -r /usr/local/emhttp/plugins/&name;
+        # Clean up any config files on the flash drive (if they existed)
+        rm -r /boot/config/plugins/&name;
+      ]]>
+    </INLINE>
+  </FILE>
+
+</PLUGIN>

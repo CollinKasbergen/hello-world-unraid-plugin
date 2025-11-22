@@ -25,6 +25,8 @@
     </INLINE>
   </FILE>
 
+  ---
+
   <FILE Run="/bin/bash" Method="remove">
     <INLINE>
       <![CDATA[
